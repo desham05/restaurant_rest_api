@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20 Apr, 2018 1:51:23 PM by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="main.java.model.Restaurants" table="restaurants">
+        <id name="restaurantId" type="java.lang.Integer">
+            <column name="restaurant_id" />
+            <generator class="increment" />
+        </id>
+        <property name="restaurantName" type="string">
+            <column name="restaurant_name" not-null="true" />
+        </property>
+        <property name="restaurantAddress" type="string">
+            <column name="restaurant_address" length="500" />
+        </property>
+        <property name="restaurantStars" type="java.lang.Float">
+            <column name="restaurant_stars" precision="12" scale="0" />
+        </property>
+        <set name="restMenus" table="rest_menu" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="rest_id" not-null="true" />
+            </key>
+            <one-to-many class="main.java.model.RestMenu" />
+        </set>
+    </class>
+</hibernate-mapping>

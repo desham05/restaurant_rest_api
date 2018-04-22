@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20 Apr, 2018 1:51:23 PM by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="main.java.model.Menu" table="menu">
+        <id name="menuId" type="java.lang.Integer">
+            <column name="menu_id" />
+            <generator class="increment" />
+        </id>
+        <property name="menuType" type="string">
+            <column name="menu_type" not-null="true" />
+        </property>
+        <set name="restMenus" table="rest_menu" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="menu_id" not-null="true" />
+            </key>
+            <one-to-many class="main.java.model.RestMenu" />
+        </set>
+        <set name="items" table="item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="menu_id" not-null="true" />
+            </key>
+            <one-to-many class="main.java.model.Item" />
+        </set>
+    </class>
+</hibernate-mapping>
